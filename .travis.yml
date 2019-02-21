@@ -23,3 +23,7 @@ script:
 - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
 - helm install yadage/metacontroller
 - helm install yadage/yadage
+- kubectl create -f crd/pvc.yml -f crd/pv.yml
+- kubectl create -f examples/wflow_mg.yml
+- sleep 20
+- kubectl get pods
