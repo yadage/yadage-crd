@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  metacontroller:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-02-21T11:54:29.061658+01:00
+    description: A Helm chart for Kubernetes
+    digest: 02ec86fd7c9ab718d1d982d5cf5da63f55964265b5cd6115b433e7616cb0385d
+    name: metacontroller
+    urls:
+    - metacontroller-0.1.0.tgz
+    version: 0.1.0
+  yadage:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-02-21T11:54:29.061851+01:00
+    description: A Helm chart for Kubernetes
+    digest: fbbd69df807253365b264dc0fb23c36fe54d956f8c33ee7f7557f7b70b55ea1c
+    name: yadage
+    urls:
+    - yadage-0.1.0.tgz
+    version: 0.1.0
+generated: 2019-02-21T11:54:29.060782+01:00
