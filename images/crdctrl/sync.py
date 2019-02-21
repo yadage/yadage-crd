@@ -8,7 +8,11 @@ def make_desired(name, spec):
    backend = {
       'backend': 'kubedirectjob',
       'backendopts': {
-         'kubeconfig': 'incluster'
+         'kubeconfig': 'incluster',
+         'secrets': {
+            'hepauth': os.environ['YADKUBE_AUTH_SECRET'],
+            'hepimgcred': [{"name": os.environ['YADKUBE_REGCRED_SECRET']}]
+         }
       }
    }
    spec.update(**backend)
@@ -42,6 +46,16 @@ def make_desired(name, spec):
                         "image": os.environ['YADKUBE_IMAGE'],
                         "imagePullPolicy":  os.environ['YADKUBE_IMAGE_POLICY'],
                         "name": "runner",
+                        "env": [
+                           {
+                              "name": "YADAGE_SCHEMA_LOAD_TOKEN",
+                              "value": os.environ['YADKUBE_PRIVATE_TOKEN']
+                           },
+                           {
+                              "name": "YADAGE_INIT_TOKEN",
+                              "value": os.environ['YADKUBE_PRIVATE_TOKEN']
+                           }
+                        ],
                         "volumeMounts": [
                            {
                               "mountPath": "/data",

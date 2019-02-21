@@ -28,7 +28,13 @@ spec:
         - name: YADKUBE_IMAGE_POLICY
           value: IfNotPresent
         - name: YADKUBE_CLAIM
-          value: yadagedata
+          value: {{ .Values.claim_name }}
+        - name: YADKUBE_PRIVATE_TOKEN
+          value: {{ .Values.private_token }}
+        - name: YADKUBE_AUTH_SECRET
+          value: hepauth
+        - name: YADKUBE_REGCRED_SECRET
+          value: hepimgcred
 ---
 apiVersion: v1
 kind: Service
@@ -40,3 +46,4 @@ spec:
     app: wflow-controller
   ports:
   - port: 80
+
