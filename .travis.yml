@@ -28,3 +28,6 @@ script:
 - kubectl create -f examples/wflow_mg.yml
 - sleep 20
 - kubectl get pods
+- kubectl get pods -o name|grep myflow|xargs kubectl logs -f
+- docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
+
