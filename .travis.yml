@@ -14,6 +14,5 @@ install:
 - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
 script:
 - kind create cluster
-- kind create cluster
 - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 - helm init
