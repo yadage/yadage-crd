@@ -15,7 +15,7 @@ install:
 script:
 - kind create cluster
 - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-- helm init
+- helm init --upgrade --service-account default
 - sleep 30
 - helm repo add yadage https://yadage.github.io/yadage-crd/helm
 - helm repo update
