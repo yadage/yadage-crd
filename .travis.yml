@@ -20,5 +20,6 @@ script:
 - helm repo add yadage https://yadage.github.io/yadage-crd/helm
 - helm repo update
 - helm search yadage
+- kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
 - helm install yadage/metacontroller
 - helm install yadage/yadage
