@@ -19,5 +19,6 @@ script:
 - sleep 30
 - helm repo add yadage https://yadage.github.io/yadage-crd/helm
 - helm repo update
+- helm search yadage
 - helm install yadage/metacontroller
 - helm install yadage/yadage
