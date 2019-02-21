@@ -26,7 +26,7 @@ script:
 - kubectl get pods -n yadage
 - kubectl create -f crd/pvc.yml -f crd/pv.yml
 - kubectl create -f examples/wflow_mg.yml
-- sleep 20
+- sleep 60
 - kubectl get pods
 - kubectl get pods -o name|grep myflow|xargs kubectl logs -f
 - docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
