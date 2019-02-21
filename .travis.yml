@@ -17,10 +17,9 @@ script:
 - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 - helm init --upgrade --service-account default
 - sleep 30
+- kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
 - helm repo add yadage https://yadage.github.io/yadage-crd/helm
 - helm repo update
-- helm search yadage
-- kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
 - helm install yadage/metacontroller
 - helm install yadage/yadage
 - kubectl create -f crd/pvc.yml -f crd/pv.yml
