@@ -1,9 +1,14 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import json
 import os
+import logging
+
+log = logging.getLogger(__name__)
+
+logging.basicConfig(level = logging.INFO)
 
 def make_desired(name, spec):
-   configname =  "{}-config".format(name)
+   configname =  "{}-yadage-config".format(name)
    claimname  = os.environ['YADKUBE_CLAIM']
    backend = {
       'backend': 'kubedirectjob',
@@ -22,7 +27,7 @@ def make_desired(name, spec):
        {
          "apiVersion": "v1",
          "data": {
-            "workflow.yml": json.dumps(spec)
+            "workflow.yml": json.dumps(spec, sort_keys = True)
          },
          "kind": "ConfigMap",
          "metadata": {
@@ -51,11 +56,11 @@ def make_desired(name, spec):
                         "env": [
                            {
                               "name": "YADAGE_SCHEMA_LOAD_TOKEN",
-                              "value": os.environ['YADKUBE_PRIVATE_TOKEN']
+                              "value": os.environ['YADKUBE_PRIVATE_TOKEN'] or "dummy" #metacontroller cannot handling empty strings
                            },
                            {
                               "name": "YADAGE_INIT_TOKEN",
-                              "value": os.environ['YADKUBE_PRIVATE_TOKEN']
+                              "value": os.environ['YADKUBE_PRIVATE_TOKEN'] or "dummy" #metacontroller cannot handling empty strings
                            }
                         ],
                         "volumeMounts": [
@@ -95,22 +100,30 @@ def make_desired(name, spec):
 
 class Controller(BaseHTTPRequestHandler):
    def sync(self, parent, children):
-      print('syncing!',children)
       # Compute status based on observed state.
-      desired_status = {
+      observed_status = {
          "cmap": len(children["ConfigMap.v1"]),
          "jobs": len(children["Job.batch/v1"])
       }
 
+      log.info('CRD sync called for parent {}'.format(parent['metadata']['name']))
+      log.info('Observed Status: {}'.format(observed_status))
       # Generate the desired child object(s).
       spec  = parent.get("spec", {})
       name = parent["metadata"]["name"]
     
-      children = make_desired(name, spec)
+      desired_children= make_desired(name, spec)
+      # desired_children = desired_children[:1]
 
-      print('ok children',children)
-    
-      return {"status": desired_status, "children": children}
+      log.info('Desired Children: {}'.format([x['metadata'] for x in desired_children]))
+
+
+      # import time
+      # time.sleep(5)
+      # print(json.dumps(children, indent = 4))
+      log.info('CRD sync done for parent {}'.format(parent['metadata']['name']))
+
+      return {"status": observed_status, "children": desired_children}
 
    def do_POST(self):
       # Serve the sync() function as a JSON webhook.
@@ -120,6 +133,6 @@ class Controller(BaseHTTPRequestHandler):
       self.send_response(200)
       self.send_header("Content-type", "application/json")
       self.end_headers()
-      self.wfile.write(json.dumps(desired))
+      self.wfile.write(json.dumps(desired, sort_keys = True))
 
 HTTPServer(("", 80), Controller).serve_forever()
