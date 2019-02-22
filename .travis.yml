@@ -44,7 +44,7 @@ jobs:
       install:
         - echo none
       script:
-        - echo none
+        - make package
       deploy:
         provider: pages
         local-dir: helm
