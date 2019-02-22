@@ -9,4 +9,4 @@ cleanup:
 	kubectl delete -f examples/wflow_mg.yml;kubectl get pods -o name|xargs kubectl delete;kubectl get jobs -o name|xargs kubectl delete;
 
 package:
-	cd helm; helm package yadage; helm package metacontroller; helm repo index $PWD; cd -
+	cd helm; helm package yadage; helm package metacontroller; helm repo index .; cd -
