@@ -15,16 +15,19 @@ install:
 - export GOROOT=/usr/lib/go-1.10
 - /usr/lib/go-1.10/bin/go get sigs.k8s.io/kind
 - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
-script:
 - kind create cluster
 - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
+- docker build -t yadage/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
+- kind load docker-image yadage/crdctrl:latest
+script:
 - helm init --upgrade --service-account default
 - sleep 30
 - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
-- helm repo add yadage https://yadage.github.io/yadage-crd/helm
-- helm repo update
-- helm install yadage/metacontroller
-- helm install yadage/yadage
+#- helm repo add yadage https://yadage.github.io/yadage-crd/helm
+#- helm repo update
+#- helm install yadage/metacontroller
+#- helm install yadage/yadage
+- cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
 - sleep 20
 - kubectl get pods -n yadage
 - kubectl create -f crd/pvc.yml -f crd/pv.yml
