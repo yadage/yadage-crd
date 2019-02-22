@@ -5,7 +5,8 @@ language: python
 python:
 - '2.7'
 - '3.6'
-install: []
+install:
+  - echo ok
 # - sudo apt-get install golang-1.10-go
 # - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 # - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
@@ -19,7 +20,8 @@ install: []
 # - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 # - docker build -t yadage/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
 # - kind load docker-image yadage/crdctrl:latest
-script: []
+script:
+  - echo ok
 # - helm init --upgrade --service-account default
 # - sleep 30
 # - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
