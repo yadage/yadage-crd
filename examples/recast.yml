@@ -18,7 +18,7 @@ spec:
     limit_backgrounds_version: 'MonoH_0700_exocirculation_2018-06-24'
   toplevel: gitlab-cern:pgadow/recast-monohbb
   workflow: specs/workflow.yml
-  dataarg: recast-flow-005
+  dataarg: recast-flow-006
   dataopts:
     inputarchive: https://gitlab.cern.ch/api/v4/projects/pgadow%2Frecast-monohbb/repository/archive.zip?sha=master
     archivematch: '*/test/'

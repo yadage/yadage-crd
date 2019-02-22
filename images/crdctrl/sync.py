@@ -12,7 +12,9 @@ def make_desired(name, spec):
          'secrets': {
             'hepauth': os.environ['YADKUBE_AUTH_SECRET'],
             'hepimgcred': [{"name": os.environ['YADKUBE_REGCRED_SECRET']}]
-         }
+         },
+         'resource_prefix': '{}-sub'.format(name),
+         'resource_labels': {'component': 'yadage', 'workflow': name}
       }
    }
    spec.update(**backend)
@@ -32,7 +34,7 @@ def make_desired(name, spec):
          "apiVersion": "batch/v1",
          "kind": "Job",
          "metadata": {
-            "name": "{}-wflow-job".format(name)
+            "name": "{}-yadage".format(name)
          },
          "spec": {
             "backoffLimit": 0,
