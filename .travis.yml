@@ -47,7 +47,7 @@ jobs:
         - echo none
       deploy:
         provider: pages
-        local-dir: deploy
+        local-dir: helm
         skip-cleanup: true
         github-token: secure: "lBilWOX2Uv8O04Glnka+VyfTXJwrHW9Xk4tHO5c0ADSi/ekwJ0sM4nq8iYQ6Udu3HKaWNhG+KNrGeZRtxhK+kGR1TpRcQABK3MWNOZBHZsTGAhuExzUx0sfSYZ9kz6JaeejwXPH0JOAlRP7ZMJdB+VBv0NDJPwFc4p4jHg9SXEFahTKs6j1xGcfIzNtWnpZtJLmZTKKPSRgGxq75tSfPe4bEjSmhp+Q9yLq2mK939y7Fxi5UQMD1r/ieHfRgv5cew5+yRA58vLeYlt+TwCZNyiUEBkoI0EwMn7PtnoRyfpcs49tR+cscuzdt6K8rI624yU3Kcqc2AX0o1WwIUn5nbxRs7T9llYntVikkmWfI1eTmLnWGERYJIdKpwklQpLGPdGHdP7uP0XLmiysiGrji3dEAfDpy0y3X0JkXF8Ut/KwxGpdvTqWRJ87AZInVz4cxpfPQOWF/cnqpfAa3S3eB8pMegvDjKtkluhEd8uG0wsAcyt6a7b9Gsq29GEqpZfsPqZU9RO6FG3uitqiqNT9bKHrNOMtK6zADgfaOLUWCOCk0v0sPCGL0aci+XttoKbW3XflC4wvl9PXG4EBrxVmE+uIjLeQQk9rBKYLYfgFpJsyQG809TLqa/sumZa9NaIdTS0VIKEA0uQPnp3a+50pWcL8/6BlrgfDd4ov9GL9PR3w="
         keep-history: true
