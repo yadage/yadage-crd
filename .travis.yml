@@ -27,6 +27,7 @@ script:
 #- helm repo update
 #- helm install yadage/metacontroller
 #- helm install yadage/yadage
+- cd helm; helm install metacontroller --set crdctrl_image=yadage/crdctrl:latest; cd -
 - cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
 - sleep 20
 - kubectl get pods -n yadage
