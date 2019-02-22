@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: controller
-        image: yadage/crdctrl
+        image: {{ .Values.crdctrl_image }}
         imagePullPolicy: IfNotPresent
         env:
         - name: YADKUBE_IMAGE
