@@ -1,9 +1,0 @@
-apiVersion: yadage.github.io/v1
-kind: Workflow
-metadata:
-  name: auth-flow
-spec:
-  initdata: {}
-  workflow: workflow.yml
-  toplevel: from-github/testing/atlas_auth
-  dataarg: cifwflow-3456
