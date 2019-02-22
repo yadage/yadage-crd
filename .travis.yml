@@ -27,16 +27,16 @@ script:
 #- helm repo update
 #- helm install yadage/metacontroller
 #- helm install yadage/yadage
-- cd helm; helm install metacontroller --set crdctrl_image=yadage/crdctrl:latest; cd -
-- cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
-- sleep 20
-- kubectl get pods -n yadage
-- kubectl create -f crd/pvc.yml -f crd/pv.yml
-- kubectl create -f examples/wflow_mg.yml
-- sleep 60
-- kubectl get pods
-- kubectl get pods|grep myflow-yadage|awk '{print $1}'|xargs kubectl logs -f
-- docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
+# - cd helm; helm install metacontroller --set crdctrl_image=yadage/crdctrl:latest; cd -
+# - cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
+# - sleep 20
+# - kubectl get pods -n yadage
+# - kubectl create -f crd/pvc.yml -f crd/pv.yml
+# - kubectl create -f examples/wflow_mg.yml
+# - sleep 60
+# - kubectl get pods
+# - kubectl get pods|grep myflow-yadage|awk '{print $1}'|xargs kubectl logs -f
+# - docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
 
 jobs:
   include:
