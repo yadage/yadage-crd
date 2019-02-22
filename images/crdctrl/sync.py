@@ -101,9 +101,13 @@ def make_desired(name, spec):
 class Controller(BaseHTTPRequestHandler):
    def sync(self, parent, children):
       # Compute status based on observed state.
+
+      job_status = [{k:v for k,v in v['status'].items() if k in ['failed','succeeded','active']} for x,v in children["Job.batch/v1"].items()]
+
       observed_status = {
          "cmap": len(children["ConfigMap.v1"]),
-         "jobs": len(children["Job.batch/v1"])
+         "jobs": len(children["Job.batch/v1"]),
+         "workflow": job_status[0]if len(job_status) else "not scheduled"
       }
 
       log.info('CRD sync called for parent {}'.format(parent['metadata']['name']))

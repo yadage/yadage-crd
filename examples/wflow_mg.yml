@@ -7,4 +7,4 @@ spec:
     nevents: 100
   toplevel: from-github/phenochain
   workflow: madgraph_delphes.yml
-  dataarg: workdir
+  dataarg: workdir5555
