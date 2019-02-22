@@ -31,3 +31,16 @@ script:
 - kubectl get pods -o name|grep myflow|xargs kubectl logs -f
 - docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
 
+jobs:
+  include:
+    - stage: docker
+      env:
+      - secure: "HmR60FsxcD78cYjx8OLFrkdm2Rgl0avW1LQXhFfMt2wSLC8Z2NHe8FaS+uWJzKbdPbIuByhE8n5hwNXm+85cxpSAMue6N+4zyte3y39PKai5jsepEdS7KIpBXgZh77RNFFRihPGDlH7DYnE5Fw0TBUIaQmXhwuX/B2po/JyKRu0zX6AZiICakq2hcNYHizTGmHNGrBIQrWWVCSvvOxSwtG2O4RtAnmGs6nwSi84haCyclyjHmuduhsdLJjuFulF4R8H2Wz2GcuCpBt99ibW9CLE64BmbE6NURZILBGAQA7IVI077ebsS/9jqCg1Qp1rL2D3cH134V3KToka6gjnn1tHFRAY9Ra0i6av9iDlj9ge307g/duUFDFUf9kdaFyybknSn0TkdcJkl314Tt+T2OfSLGZBLoQnAihiVKd3BwoxPkWvmNrg6AbwitCMzGvDFOJ8KfNKDwkComhrHmWArWJEHtQKtYXrzTAoYbMuNGegJhtWwAnJoSS6nplmw7D1KJajQn9Qge4d07Yvc66gEPCIXrX8hUGRJ4HCL8fJBHy43XnT+HQ69gLBvjo/Hrw44FqjeZs93kzQJeWBs9rA07XB80oKxfbEbFcpxc9mh3OmQnw1mjK5bVeudouU8aWNkEKib9qVbwegWCVRRVCLSw4Iq2yQhoDWleIas3sEwlpo="
+      - secure: "RPEbpwvqoLpchUO7TlAAIZrCz0NQjlmvQmhip9JsgTyaZfLvZH0QEA8puPXdjYIu9/DzyjjOmSKKAHi1V6QISm++bATb+7AP6Q7ZaqI1Odqu5v5+1qMcF889pm1WCQ0wJxlO1K9W3TOnAN7+TAa1vFOuV/eTQt2VdX71HsBGuM05dd9x2gaMSshmdTujHjWwqpbyNEtKmndJtiQ/JCarMlzxzwAlw9IqDC5kD3kT5N8c6aGVKAfMp89QYUKIVlHzkyQVMOo/6vLYzpN5+XWAG2xQ1sWRCWlRLpwsi3TvanWxqxFXrnmU6oh1KUsyECLrEpd3cet49BFqyQ6pbis0P05VuIEh3YpkdtA2KLI+1kyDyzuymAiCsC0E7oZz0WGlzE0dvDHD3JCPy3m1lHGLIiBkX02dmKUQQ8W/iK0/zeIEjZYJG8qoD3raTrBpa0mm3oaA99Sa8H2/yQ9sjf/WYOFm5w9U2NxhDIWz0XIdta1I23jEZpxFr7oBIhtI8bK8h6v/ouEo0MiNYPV/QguqsLmE4tS72dIB6dZgTaapm3UyxCUh+auFxVYLysOYnyZXLPYvxs2bGuLEulg8GMTOuDa8xv2A+iOl/0VbvCZ62TwLzpCTZjZJqz28MFlvJLFuNSxwcKNVYuzDsFWQkpkd4JVbgmkF4SZSqPF/XTOm0xQ="
+      install:
+        - echo none
+      script:
+        - echo none
+      deploy:
+        provider: script
+        script: ./deploy/deploy.sh

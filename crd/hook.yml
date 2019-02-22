@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: YADKUBE_IMAGE
-          value: yadage/yadage
+          value: {{ .Values.yadage_image }}
         - name: YADKUBE_IMAGE_POLICY
           value: IfNotPresent
         - name: YADKUBE_CLAIM
