@@ -47,6 +47,7 @@ jobs:
         - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
       script:
         - wget https://github.com/yadage/yadage-crd/archive/gh-pages.zip
+        - unzip gh-pages.zip
         - cd helm; helm package yadage; helm package metacontroller; cd -
         - cp helm/*tgz yadage-crd-gh-pages
         - cd yadage-crd-gh-pages; helm repo index .;cd -
