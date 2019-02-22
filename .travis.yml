@@ -42,7 +42,7 @@ jobs:
   include:
     - stage: helm
       install:
-        - echo none
+        - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
       script:
         - make package
       deploy:
