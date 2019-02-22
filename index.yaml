@@ -3,7 +3,16 @@ entries:
   metacontroller:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.867842327Z
+    created: 2019-02-22T18:56:42.953859117Z
+    description: A Helm chart for Kubernetes
+    digest: 8a26b600d4638a53fa2cd463c5d0cf191a39191dbaf67e416aaac22b4f12ede2
+    name: metacontroller
+    urls:
+    - metacontroller-0.0.12.tgz
+    version: 0.0.12
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-02-22T18:56:42.953654171Z
     description: A Helm chart for Kubernetes
     digest: 6c6380a1ef888bdcbf81e0d3ae9d1ce6fa65c1abfeb4b4b1952d6533a5f19fe1
     name: metacontroller
@@ -12,7 +21,7 @@ entries:
     version: 0.0.11
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.867643238Z
+    created: 2019-02-22T18:56:42.953460757Z
     description: A Helm chart for Kubernetes
     digest: 060a038d2ff6418bc856ff970fe0986a5f78d351dbd364ddb679add5b7c50be6
     name: metacontroller
@@ -21,7 +30,7 @@ entries:
     version: 0.0.10
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.868023565Z
+    created: 2019-02-22T18:56:42.954478803Z
     description: A Helm chart for Kubernetes
     digest: d6f33d0ce3e5240b55203067d2197de0fb41bfb93164340806591d86bd9c04f9
     name: metacontroller
@@ -31,7 +40,16 @@ entries:
   yadage:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.868411519Z
+    created: 2019-02-22T18:56:42.955749882Z
+    description: A Helm chart for Kubernetes
+    digest: b95d2892056293c619106017e6532dd351ee258cc310f7dfb9de62c4801c7e6a
+    name: yadage
+    urls:
+    - yadage-0.0.12.tgz
+    version: 0.0.12
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-02-22T18:56:42.955337532Z
     description: A Helm chart for Kubernetes
     digest: 756a5e75bc7ab00d05698e4fe649ff1c3f8ecdaf2aca70b4a27b7cba91c99995
     name: yadage
@@ -40,7 +58,7 @@ entries:
     version: 0.0.11
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.868206518Z
+    created: 2019-02-22T18:56:42.954947523Z
     description: A Helm chart for Kubernetes
     digest: c657dc391e4ce5e7a19c0fd597138b70e465294fb5c2dd08ca36b1585c41e2d0
     name: yadage
@@ -49,11 +67,11 @@ entries:
     version: 0.0.10
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-22T18:37:09.868652648Z
+    created: 2019-02-22T18:56:42.956159043Z
     description: A Helm chart for Kubernetes
     digest: e8711fdd09468613db5d4b63d68957ca090c2cbdc4a63dc8da89e980245e3f2b
     name: yadage
     urls:
     - yadage-0.0.9.tgz
     version: 0.0.9
-generated: 2019-02-22T18:37:09.867248182Z
+generated: 2019-02-22T18:56:42.953053601Z
