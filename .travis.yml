@@ -25,7 +25,7 @@ script:
 - helm init --upgrade --service-account default
 - sleep 30
 - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
-- cd helm; helm install metacontroller --s  et crdctrl_image=yadage/crdctrl:latest; cd -
+- cd helm; helm install metacontroller; cd -
 - cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
 - sleep 20
 - kubectl get pods -n yadage
