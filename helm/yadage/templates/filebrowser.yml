@@ -14,6 +14,18 @@ spec:
     spec:
       containers:
       - image: python:alpine
+        name: barectr
+        workingDir: /srv
+        command:
+        - sh
+        - -c
+        - python -m http.server
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: data
+          mountPath: /srv
+      - image: python:alpine
         name: filebrower
         workingDir: /srv
         command:
@@ -46,3 +58,15 @@ spec:
     port: 80
     targetPort: 80
     nodePort: 30000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fileaccess
+spec:
+  selector:
+    app: filebrowser
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
