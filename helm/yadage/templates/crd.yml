@@ -12,3 +12,8 @@ spec:
     shortNames:
     - wf
   scope: Namespaced
+  additionalPrinterColumns:
+  - name: Spec
+    type: integer
+    description: Workflow Status
+    JSONPath: .status.workflow.succeeded

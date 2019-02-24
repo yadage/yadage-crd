@@ -22,9 +22,9 @@ install:
 - kind load docker-image yadage/crdctrl:latest
 script:
 - echo ok
-- helm init --upgrade --service-account default
-- sleep 30
 - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
+- helm init --upgrade --service-account admin
+- sleep 30
 - cd helm; helm install metacontroller; cd -
 - cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
 - sleep 20
