@@ -1,4 +1,7 @@
 private_token: ''
 claim_name: yadagedata
 yadage_image: 'yadage/yadage:v0.19.6'
-crdctrl_image: 'yadage/crdctrl:v0.0.2'
+crdctrl_image: 'yadage/crdctrl:v0.0.15'
+filebrowser_user: ''
+filebrowser_password: ''
+  
