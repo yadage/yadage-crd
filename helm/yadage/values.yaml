@@ -13,6 +13,7 @@ storage:
   node_name: docker-for-desktop
   size: 1Gi
   sclass_name: local-storage
+  path: /mnt
 
 secrets:
   username: hello
