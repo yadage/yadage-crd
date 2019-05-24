@@ -1,9 +1,8 @@
-private_token: ''
 claim_name: yadagedata
 yadage_image: 'yadage/yadage:v0.19.6'
 crdctrl_image: 'yadage/crdctrl:v0.0.15'
-filebrowser_user: ''
-filebrowser_password: ''
+filebrowser_user: 'hello'
+filebrowser_password: 'world'
 job_namespace: default
 job_svcaccount: default
 
@@ -14,6 +13,8 @@ storage:
   size: 1Gi
   sclass_name: local-storage
   path: /mnt
+
+private_token: 'token'
 
 secrets:
   username: hello
