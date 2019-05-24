@@ -4,4 +4,21 @@ yadage_image: 'yadage/yadage:v0.19.6'
 crdctrl_image: 'yadage/crdctrl:v0.0.15'
 filebrowser_user: ''
 filebrowser_password: ''
-  
+job_namespace: default
+job_svcaccount: default
+
+storage:
+  create: true
+  type: "local"
+  node_name: docker-for-desktop
+  size: 1Gi
+  sclass_name: local-storage
+
+secrets:
+  username: hello
+  password: world
+
+imageCredentials:
+  registry: gitlab-registry.cern.ch
+  username: hello
+  password: world

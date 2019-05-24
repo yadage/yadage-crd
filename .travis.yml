@@ -24,13 +24,19 @@ script:
 - echo ok
 - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
 - helm init --service-account default --wait --upgrade
-- sleep 30
+- sleep 10
 - kubectl create namespace yadage
-- cd helm; helm install metacontroller; cd -
-- cd helm; helm install yadage --set crdctrl_image=yadage/crdctrl:latest; cd -
-- sleep 20
+- cd helm; helm install metacontroller --namespace metacontroller; cd -
+- >
+  cd helm;
+  helm install yadage 
+  --set crdctrl_image=yadage/crdctrl:latest 
+  --set storage.crate=true
+  --set storage.node_name=kind-control-plane
+  --namespace yadage;
+  cd -
+- sleep 10
 - kubectl get pods -n yadage
-- kubectl create -f crd/pvc.yml -f crd/pv.yml
 - kubectl create -f examples/wflow_mg.yml
 - sleep 60
 - kubectl get pods

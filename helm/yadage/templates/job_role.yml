@@ -1,0 +1,26 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: yadage
+  namespace: {{ .Values.job_namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.job_svcaccount }}
+    namespace: {{ .Values.job_namespace }}
+roleRef:
+  kind: Role
+  name: yadage-engine
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: yadage-engine
+  namespace: {{ .Values.job_namespace }}
+rules:
+- apiGroups: [""]
+  resources: ["pods", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["batch", "extensions"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]

@@ -1,0 +1,55 @@
+{{ if (eq .Values.storage.create true) and (eq .Values.storage.type "local") }}
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv
+  namespace: {{ .Values.job_namespace }}
+spec:
+  capacity:
+    storage: {{ .Values.storage.size }}
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.storage.sclass_name }}
+  local:
+    path: /mnt
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ .Values.storage.node_name }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.claim_name }}
+  namespace: {{ .Values.job_namespace }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: {{ .Values.storage.size }}
+
+{{ else if (eq .Values.storage.create true) and (eq .Values.storage.type "cern") }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.claim_name }}
+  namespace: {{ .Values.job_namespace }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10G
+  storageClassName: {{ .Values.storage.sclass_name }}
+  
+{{ else }}
+
+{{ end }}

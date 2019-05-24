@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: filebrowser
-  # namespace: yadage
+  namespace: {{ .Values.job_namespace }}
 spec:
   selector:
     matchLabels:
@@ -48,7 +48,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: filebrowser
-  # namespace: yadage
+  namespace: {{ .Values.job_namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
 spec:
   type: NodePort
   selector:
@@ -63,6 +63,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: fileaccess
+  namespace: {{ .Values.job_namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
 spec:
   selector:
     app: filebrowser
