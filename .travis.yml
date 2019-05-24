@@ -14,7 +14,7 @@ install:
 - sudo apt-get install -y kubectl
 - /usr/lib/go-1.10/bin/go version
 - export GOROOT=/usr/lib/go-1.10
-- GO111MODULE="on" /usr/lib/go-1.10/bin/go get sigs.k8s.io/kind
+- GO11MODULE="on" /usr/lib/go-1.10/bin/go get sigs.k8s.io/kind
 - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
 - kind create cluster
 - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
