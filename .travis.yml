@@ -10,7 +10,7 @@ jobs:
       install:
       - echo ok
       - export GO111MODULE="on"
-      - go --version
+      - go version
       - go get -u sigs.k8s.io/kind
       - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
       - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
