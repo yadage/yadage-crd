@@ -3,6 +3,11 @@ services:
 - docker
 go:
   - 1.11.x
+install:
+- echo ok
+scripts:
+- echo ok
+
 jobs:
   include:
   - stage: build
