@@ -13,7 +13,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.storage.sclass_name }}
   local:
-    path: {{Values.storage.path }}
+    path: {{ .Values.storage.path }}
   nodeAffinity:
     required:
       nodeSelectorTerms:
