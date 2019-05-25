@@ -1,20 +1,17 @@
 sudo: required
 services:
 - docker
-language: python
-python:
-- '2.7'
-- '3.6'
+go:
+  - 1.11.x
 install:
 - echo ok
-- sudo apt-get install golang-1.10-go
+- echo "go get -u sigs.k8s.io/kind"
+- export GO111MODULE="on"
+- go get -u sigs.k8s.io/kind@0a6ceae
 - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 - sudo apt-get update
 - sudo apt-get install -y kubectl
-- /usr/lib/go-1.10/bin/go version
-- export GOROOT=/usr/lib/go-1.10
-- export GO111MODULE='on'
 - /usr/lib/go-1.10/bin/go get sigs.k8s.io/kind
 - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
 - kind create cluster
