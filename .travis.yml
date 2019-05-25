@@ -11,12 +11,11 @@ jobs:
       - echo ok
       - echo "go get -u sigs.k8s.io/kind"
       - export GO111MODULE="on"
-      - go get -u sigs.k8s.io/kind@0a6ceae
+      - go get -u sigs.k8s.io/kind@master
       - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
       - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
       - sudo apt-get update
       - sudo apt-get install -y kubectl
-      - /usr/lib/go-1.10/bin/go get sigs.k8s.io/kind
       - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
       - kind create cluster
       - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
