@@ -3,15 +3,11 @@ services:
 - docker
 go:
   - 1.11.x
-install:
-- echo ok
-scripts:
-- echo ok
 
 jobs:
   include:
-  - stage: build
-    install:
+    - stage: build
+      install:
       - echo ok
       - echo "go get -u sigs.k8s.io/kind"
       - export GO111MODULE="on"
@@ -26,7 +22,7 @@ jobs:
       - export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
       - docker build -t yadage/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
       - kind load docker-image yadage/crdctrl:latest
-    script:
+      script:
       - echo ok
       - kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
       - helm init --service-account default --wait --upgrade
@@ -48,7 +44,6 @@ jobs:
       - kubectl get pods
       - kubectl get pods|grep myflow-yadage|awk '{print $1}'|xargs kubectl logs -f
       - docker exec kind-control-plane cat /mnt/workdir/delphes/output.lhco
-
     - stage: helm
       install:
         - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
