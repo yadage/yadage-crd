@@ -42,6 +42,8 @@ jobs:
         cd -
       - sleep 10
       - kubectl get pods -n yadage
+      - curl https://raw.githubusercontent.com/lukasheinrich/yadage-workflows/master/phenochain/madgraph_delphes.yml
+      - docker run --rm -it alpine sh -c 'apk add curl;curl https://raw.githubusercontent.com/lukasheinrich/yadage-workflows/master/phenochain/madgraph_delphes.yml'
       - kubectl run -it  hello --image alpine -- sh -c 'apk add curl;curl https://raw.githubusercontent.com/lukasheinrich/yadage-workflows/master/phenochain/madgraph_delphes.yml'
       - kubectl create -f examples/wflow_mg.yml
       - sleep 60
