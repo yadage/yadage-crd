@@ -13,6 +13,8 @@ filebrowser:
 job:
   namespace: default
   svcaccount: default
+  registry_creds: hepimgcred
+  experiment_creds: hepauth
   resource_opts: 
     requests:
       memory: "10Mi"

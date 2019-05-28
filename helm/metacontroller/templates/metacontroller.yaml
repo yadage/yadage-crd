@@ -68,6 +68,6 @@ spec:
         command: ["/usr/bin/metacontroller"]
         args:
         - --logtostderr
-        - -v=4
+        - -v={{.Values.verbosity}}
         - --discovery-interval=20s
   volumeClaimTemplates: []

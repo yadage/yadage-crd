@@ -35,9 +35,9 @@ spec:
         - name: YADKUBE_CPU_REQUEST
           value: {{ .Values.engine_cpu_request }}
         - name: YADKUBE_AUTH_SECRET
-          value: hepauth
+          value: {{ .Values.job.experiment_creds }}
         - name: YADKUBE_REGCRED_SECRET
-          value: hepimgcred
+          value: {{ .Values.job.registry_creds }}
         - name: YADKUBE_RESOURCE_OPTS
           value: '{{ .Values.job.resource_opts | toJson }}'
 ---

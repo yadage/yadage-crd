@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+verbosity: 4
+
 image:
   repository: nginx
   tag: stable

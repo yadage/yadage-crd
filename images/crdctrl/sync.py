@@ -42,7 +42,8 @@ def make_desired(name, spec):
          "apiVersion": "batch/v1",
          "kind": "Job",
          "metadata": {
-            "name": "{}-yadage".format(name)
+            "name": "{}-yadage".format(name),
+            "labels": {'component': 'yadage', 'workflow': name}
          },
          "spec": {
             "backoffLimit": 0,
