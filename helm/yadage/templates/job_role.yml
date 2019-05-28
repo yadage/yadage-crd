@@ -2,11 +2,11 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: yadage
-  namespace: {{ .Values.job_namespace }}
+  namespace: {{ .Values.job.namespace }}
 subjects:
   - kind: ServiceAccount
-    name: {{ .Values.job_svcaccount }}
-    namespace: {{ .Values.job_namespace }}
+    name: {{ .Values.job.svcaccount }}
+    namespace: {{ .Values.job.namespace }}
 roleRef:
   kind: Role
   name: yadage-engine
@@ -16,7 +16,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: yadage-engine
-  namespace: {{ .Values.job_namespace }}
+  namespace: {{ .Values.job.namespace }}
 rules:
 - apiGroups: [""]
   resources: ["pods", "configmaps"]

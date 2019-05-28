@@ -19,7 +19,10 @@ def make_desired(name, spec):
             'hepimgcred': [{"name": os.environ['YADKUBE_REGCRED_SECRET']}]
          },
          'resource_prefix': '{}-sub'.format(name),
-         'resource_labels': {'component': 'yadage', 'workflow': name}
+         'resource_labels': {'component': 'yadage', 'workflow': name},
+         'resource_opts': json.loads(os.environ.get('YADKUBE_RESOURCE_OPTS',json.dumps(
+            {"requests": {"memory": "10Mi", "cpu": "100m"}}
+         )))
       }
    }
    spec.update(**backend)
@@ -63,6 +66,11 @@ def make_desired(name, spec):
                               "value": os.environ['YADKUBE_PRIVATE_TOKEN'] or "dummy" #metacontroller cannot handling empty strings
                            }
                         ],
+                        "resources": {
+                           "requests": {
+                              "cpu": os.environ.get('YADKUBE_CPU_REQUEST','100m')
+                           }
+                        },
                         "volumeMounts": [
                            {
                               "mountPath": "/data",

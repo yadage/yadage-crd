@@ -10,7 +10,7 @@ services:
 
 jobs:
   include:
-    - stage: build
+    - stage: test
       install:
       - echo ok
       - export GO111MODULE="on"

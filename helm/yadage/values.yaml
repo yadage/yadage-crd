@@ -1,25 +1,46 @@
-claim_name: yadagedata
-yadage_image: 'yadage/yadage:v0.19.6'
-crdctrl_image: 'yadage/crdctrl:v0.0.15'
-filebrowser_user: 'hello'
-filebrowser_password: 'world'
-job_namespace: default
-job_svcaccount: default
+yadage:
+  image: 'yadage/yadage:v0.19.6'
+  pull_policy: IfNotPresent
+
+crdctrl:
+  image: 'yadage/crdctrl:v0.0.15'
+  pull_policy: IfNotPresent
+
+filebrowser:
+  user: 'hello'
+  password: 'world'
+
+job:
+  namespace: default
+  svcaccount: default
+  resource_opts: 
+    requests:
+      memory: "10Mi"
+      cpu: "100m"
 
 storage:
   create: true
+  claim_name: yadagedata
+
   type: "local"
   node_name: docker-for-desktop
   size: 1Gi
   sclass_name: local-storage
   path: /mnt
 
+# this is the token used to pull workflow specs
+# (YADAGE_INIT_TOKEN and )
 private_token: 'token'
 
+# this is the cpu request of the engine pod
+engine_cpu_request: 100m
+
+# this is the auth used within the jobs
 secrets:
   username: hello
   password: world
 
+# this is the auth used to pull images
 imageCredentials:
   registry: gitlab-registry.cern.ch
   username: hello

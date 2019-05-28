@@ -21,21 +21,25 @@ spec:
     spec:
       containers:
       - name: controller
-        image: {{ .Values.crdctrl_image }}
-        imagePullPolicy: IfNotPresent
+        image: {{ .Values.crdctrl.image }}
+        imagePullPolicy: {{ .Values.crdctrl.pull_policy }}
         env:
         - name: YADKUBE_IMAGE
-          value: {{ .Values.yadage_image }}
+          value: {{ .Values.yadage.image }}
         - name: YADKUBE_IMAGE_POLICY
-          value: IfNotPresent
+          value: {{ .Values.yadage.pull_policy }}
         - name: YADKUBE_CLAIM
-          value: {{ .Values.claim_name }}
+          value: {{ .Values.storage.claim_name }}
         - name: YADKUBE_PRIVATE_TOKEN
           value: {{ .Values.private_token }}
+        - name: YADKUBE_CPU_REQUEST
+          value: {{ .Values.engine_cpu_request }}
         - name: YADKUBE_AUTH_SECRET
           value: hepauth
         - name: YADKUBE_REGCRED_SECRET
           value: hepimgcred
+        - name: YADKUBE_RESOURCE_OPTS
+          value: '{{ .Values.job.resource_opts | toJson }}'
 ---
 apiVersion: v1
 kind: Service

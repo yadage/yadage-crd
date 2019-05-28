@@ -4,7 +4,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: local-pv
-  namespace: {{ .Values.job_namespace }}
+  namespace: {{ .Values.job.namespace }}
 spec:
   capacity:
     storage: {{ .Values.storage.size }}
@@ -26,8 +26,8 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ .Values.claim_name }}
-  namespace: {{ .Values.job_namespace }}
+  name: {{ .Values.storage.claim_name }}
+  namespace: {{ .Values.job.namespace }}
 spec:
   accessModes:
   - ReadWriteMany
@@ -40,8 +40,8 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ .Values.claim_name }}
-  namespace: {{ .Values.job_namespace }}
+  name: {{ .Values.storage.claim_name }}
+  namespace: {{ .Values.job.namespace }}
 spec:
   accessModes:
     - ReadWriteMany

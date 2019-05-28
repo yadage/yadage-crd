@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: filebrowser
-  namespace: {{ .Values.job_namespace }}
+  namespace: {{ .Values.job.namespace }}
 spec:
   selector:
     matchLabels:
@@ -33,7 +33,7 @@ spec:
         - -c
         - |
           pip install sauth
-          sauth {{ .Values.filebrowser_user }} {{ .Values.filebrowser_password }} 0.0.0.0 80
+          sauth {{ .Values.filebrowser.user }} {{ .Values.filebrowser.password }} 0.0.0.0 80
         ports:
         - containerPort: 80
         volumeMounts:
@@ -42,13 +42,13 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: {{ .Values.claim_name }}
+          claimName: {{ .Values.storage.claim_name }}
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: filebrowser
-  namespace: {{ .Values.job_namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
+  namespace: {{ .Values.job.namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
 spec:
   type: NodePort
   selector:
@@ -63,7 +63,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: fileaccess
-  namespace: {{ .Values.job_namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
+  namespace: {{ .Values.job.namespace }} # comment: this must be the namespace of the job since the PV of the jobs must be accessible here
 spec:
   selector:
     app: filebrowser
