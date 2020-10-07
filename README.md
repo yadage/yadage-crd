@@ -43,9 +43,9 @@ cd yadage-crd
 Build the `crdctrl` image and push it to your personal docker hub:
 
 ```bash
-docker login
-docker build -t danikam/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
-docker push danikam/crdctrl:latest
+sudo docker login
+sudo docker build -t danikam/crdctrl:latest -f images/crdctrl/Dockerfile images/crdctrl
+sudo docker push danikam/crdctrl:latest
 ```
 
 ## 3. Set up yadage
@@ -55,6 +55,7 @@ docker push danikam/crdctrl:latest
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sudo bash
 
 # Set up clusterrolebinding
 kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
@@ -75,6 +76,7 @@ kubectl create namespace yadage
 cd helm
 helm install metacontroller
 helm install yadage --set crdctrl_image=danikam/crdctrl:latest  # replace danikam/crdctrl:latest with the image you pushed to docker hub
+cd ..
 
 # Check that the controller pod is running
 kubectl get pods -n yadage
@@ -90,7 +92,7 @@ Secrets need to be added to provide the recast client authentication credentials
 Edit the `data: [...]` field in `crd/hepauth_secret.yml` with a base64-encoded kinit initialization of the form `echo 'BibuSabi4'|kinit recast@CERN.CH`. To do so, replace `BibuSabi4` and `recast` with the password and username, respectively, of the CERN account you want to use for access, and base-64 encode the whole thing as follows:
 
 ```bash
-printf "echo 'phonypassword'|kinit recast@cern.ch"|base64
+printf "echo 'phonypassword'|kinit recast@CERN.CH"|base64
 ```
 which will output 
 
